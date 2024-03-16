@@ -1,0 +1,165 @@
+:root {
+    --gray-color: #D3D8DF;
+    --blue-color: #0066FF;
+    --border-color: #DFE4EF;
+    --transition-duration: 0.3s;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    margin: 0;
+}
+
+.reset-btn {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    text-align: left;
+    font-family: "Fira Sans", sans-serif;
+    font-size: 15px;
+}
+
+.reset-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+}
+
+.list__item {
+    transition: box-shadow var(--transition-duration);
+}
+
+.list__item:not(.opened) .list__inner {
+    display: none;
+}
+
+.list__item:not(.opened) .list__button:before {
+    transform: rotate(180deg);
+}
+
+.list__item.opened .list__inner {
+    display: block;
+}
+
+.list__item.opened:not(:last-child) .list__top {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.list__item.opened .list__text:not(.draggable) {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.list__item.opened .list__text.dragged {
+    border-top :5px solid var(--blue-color);
+}
+
+.list__item.opened:not(:last-child) .list__text:not(.draggable):last-child {
+    border-bottom: none;
+}
+
+.list__item:not(:last-child) {
+    border-bottom: none;
+}
+
+.list__item:not(:last-child) .list__top {
+    border-bottom: none;
+}
+
+.list__item.draggable {
+    border: 1px dashed;
+    cursor: pointer;
+}
+
+.list__item.dragged {
+    box-shadow: var(--blue-color) 0 3px 16px 0;
+    border-top: 5px solid var(--blue-color);
+}
+
+.list__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid var(--border-color);
+}
+
+.list__button {
+    padding: 15px;
+    font-weight: 500;
+}
+
+.list__button:before,
+.list__toggle:after,
+.list__text:after {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.list__button:before {
+    margin-right: 15px;
+    width: 22px;
+    height: 22px;
+    border: 1px solid var(--gray-color);
+    border-radius: 100%;
+    background-image: url('../images/arrow.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50%;
+    transition: transform var(--transition-duration);
+}
+
+.list__toggle {
+    padding: 15px;
+    margin-left: auto;
+}
+
+.list__toggle:after {
+    width: 8px;
+    height: 15px;
+    margin-left: auto;
+    background-image: url('../images/up-down.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.list__inner {
+    padding-left: 15px;
+}
+
+.list__text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 15px;
+    border: 1px solid var(--border-color);
+    border-top: none;
+    transition: box-shadow var(--transition-duration), border var(--transition-duration);
+}
+
+.list__text.dragged {
+    box-shadow: var(--blue-color) 0 3px 16px 0;
+}
+
+.list__text.draggable {
+    border: 1px dashed;
+    cursor: pointer;
+}
+
+.list__item:not(.opened) .list__text:not(.draggable):not(:last-child) {
+    border-bottom: none;
+}
